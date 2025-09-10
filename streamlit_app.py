@@ -42,7 +42,7 @@ if submit:
 You are a professional resume writer.
 Take the following raw information and generate a polished professional resume.
 Expand short inputs into detailed sentences.
-Separate sections clearly: Contact Info, Summary, Experience, Education, Skills.
+Separate sections clearly but not ---------: Contact Info, Summary, Experience, Education, Skills.
 Do not use LaTeX. Keep it plain text ready for PDF.
 
 Name: {name}
