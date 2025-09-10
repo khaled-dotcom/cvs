@@ -39,23 +39,23 @@ if submit:
     # 3. Build AI Prompt
     # ============================
     cv_prompt = f"""
-    You are a professional resume writer.
-    Take the following raw information and generate a polished professional resume.
-    Expand short inputs into detailed sentences.
-    Separate sections clearly: Contact Info, Summary, Experience, Education, Skills.
-    Do not use LaTeX. Keep it plain text ready for PDF.
+You are a professional resume writer.
+Take the following raw information and generate a polished professional resume.
+Expand short inputs into detailed sentences.
+Separate sections clearly: Contact Info, Summary, Experience, Education, Skills.
+Do not use LaTeX. Keep it plain text ready for PDF.
 
-    Name: {name}
-    Title: {title}
-    Email: {email}
-    Phone: {phone}
-    Experience:
-    {experience}
-    Education:
-    {education}
-    Skills:
-    {skills}
-    """
+Name: {name}
+Title: {title}
+Email: {email}
+Phone: {phone}
+Experience:
+{experience}
+Education:
+{education}
+Skills:
+{skills}
+"""
 
     # ============================
     # 4. Call Groq AI
@@ -87,8 +87,7 @@ if submit:
     c.setFont("Helvetica", 12)
     section_spacing = 1*cm
 
-    def draw_section(title, content_lines):
-        nonlocal y
+    def draw_section(title, content_lines, y):
         c.setFont("Helvetica-Bold", 14)
         c.drawString(2*cm, y, title)
         y -= 0.6*cm
@@ -101,6 +100,7 @@ if submit:
                 y = height-2*cm
                 c.setFont("Helvetica", 12)
         y -= section_spacing
+        return y
 
     current_section = None
     section_lines = []
@@ -108,13 +108,13 @@ if submit:
         line = line.strip()
         if line.lower().startswith(("summary", "experience", "education", "skills", "contact")):
             if current_section:
-                draw_section(current_section, section_lines)
+                y = draw_section(current_section, section_lines, y)
             current_section = line
             section_lines = []
         elif line != "":
             section_lines.append(line)
     if current_section:
-        draw_section(current_section, section_lines)
+        y = draw_section(current_section, section_lines, y)
 
     c.save()
     buffer.seek(0)
