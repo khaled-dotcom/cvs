@@ -14,7 +14,7 @@ from io import BytesIO
 # 1. Groq API Key
 # ============================
 # REMOVE before sharing publicly. Use Streamlit secrets for deployment
-os.environ["GROQ_API_KEY"] = "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"
+os.environ["GROQ_API_KEY"] = "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"
 client = Groq(api_key=os.environ["GROQ_API_KEY"])
 
 # ============================
