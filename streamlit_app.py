@@ -14,7 +14,7 @@ from io import BytesIO
 # ============================
 # 1. Groq API Key (TEST ONLY)
 # ============================
-os.environ["GROQ_API_KEY"] = "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"
+os.environ["GROQ_API_KEY"] = "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"
 client = Groq(api_key=os.environ["GROQ_API_KEY"])
 
 # ============================
